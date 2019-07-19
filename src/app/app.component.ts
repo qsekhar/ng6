@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ng6';
+
+  isShowbanner: Boolean = true;
+
+  constructor(private router: Router, private location: Location) {
+    router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        this.isShowbanner = ('' === this.location.path())
+      }
+    });
+  }
 }
