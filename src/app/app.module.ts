@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { BannerComponent } from './partials/banner/banner.component';
 import { FeaturePostComponent } from './partials/feature-post/feature-post.component';
 import { SidebarComponent } from './partials/sidebar/sidebar.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { SidebarComponent } from './partials/sidebar/sidebar.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
